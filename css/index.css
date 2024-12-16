@@ -1,0 +1,305 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+/* Root Variables */
+:root {
+    --main-color: #443;
+    --border-radius: 15px;
+    --border: .2rem solid var(--main-color);
+    --border-hover: .2rem dashed var(--main-color);
+    --background-color: #fff;
+    --hover-bg: #f2f2f2;
+    --primary-bg: rgba(255, 255, 255, 0.8); /* Light background for menu boxes */
+}
+
+/* General Reset */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .3s ease;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Global Section Padding */
+section {
+    padding: 2rem 9%;
+}
+
+/* Heading Style */
+.heading {
+    font-size: 7rem;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: .05rem var(--main-color);
+    letter-spacing: .2rem;
+    text-align: center;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.heading span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: var(--main-color);
+    font-size: 3rem;
+}
+
+/* Button Style */
+.btn {
+    display: inline-block;
+    padding: .9rem 1.5rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    color: #000;
+    background: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 1.7rem;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    border-radius: 10px;
+    border: var(--border-hover);
+    background-color: var(--hover-bg);
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    background: var(--background-color);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    padding: 2rem 9%;
+}
+
+.header .logo {
+    color: var(--main-color);
+    font-size: 2.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.header .logo i {
+    padding-left: .5rem;
+}
+
+.header .navbar a {
+    margin: 0 1rem;
+    font-size: 1.7rem;
+    color: var(--main-color);
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.header .navbar a:hover {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+/* Cart Icon */
+.cart {
+    position: relative;
+}
+
+.cart a {
+    color: var(--main-color);
+    font-size: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.cart a:hover {
+    transform: scale(1.1);
+}
+
+.cart .cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 50%;
+}
+
+.cart img {
+    width: 32px; /* Lebar lebih besar */
+    height: 32px; /* Tinggi lebih besar */
+    object-fit: cover; /* Menjaga proporsi gambar */
+    margin-left: 10px; /* Beri jarak dari elemen lain */
+    vertical-align: middle; /* Sejajarkan dengan ikon atau teks */
+}
+
+
+/* MENU */
+.menu {
+    background: url(../image/menu-bg.jpg) no-repeat center center/cover;
+    padding: 10rem 0 5rem;
+    text-align: center;
+}
+
+.menu .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.menu .box-container .box {
+    flex: 1 1 12rem;
+    padding: 2rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--primary-bg);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.menu .box-container .box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-bg);
+}
+
+.menu .box-container .box img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.menu .box-container .box img:hover {
+    transform: scale(1.1);
+}
+
+.menu .box-container .box .content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Maintain space between elements */
+}
+
+.menu .box-container .box .content h3 {
+    font-size: 2.2rem;
+    color: var(--main-color);
+}
+
+.menu .box-container .box .content p {
+    font-size: 1.4rem;
+    color: #555;
+    padding: 0.5rem 0;
+}
+
+.menu .box-container .box .content span {
+    font-size: 1.8rem;
+    color: var(--main-color);
+    margin-bottom: 1rem; /* Add space below the price */
+}
+
+.menu .box-container .box .add-to-cart {
+    background-color: #fff;
+    color: #000000;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.menu .box-container .box .add-to-cart:hover {
+    background-color: #4CAF50;
+}
+
+.menu .box .add-to-cart {
+    background-color: #443;
+    color: #000000;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.menu .box .add-to-cart:hover {
+    background-color: #333;  /* Darker shade for hover effect */
+}
+
+/* FOOTER */
+.footer {
+    background: #f9f9f9;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer .credit {
+    font-size: 1.6rem;
+    color: var(--main-color);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+    .header {
+        padding: 3rem;
+    }
+    section {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .heading {
+        font-size: 5rem;
+    }
+    .heading span {
+        font-size: 2rem;
+    }
+    .menu .box-container .box {
+        margin-top: 2rem;
+        flex: 1 1 30rem;
+        text-align: center;
+    }
+    .menu .box-container .box img {
+        margin-top: -4rem;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+    .home .row .image img {
+        height: auto;
+        width: 100%;
+    }
+}

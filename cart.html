@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="home.html" class="logo">coffee <i class="fas fa-mug-hot"></i></a>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="home.html#about">About</a>
+            <a href="home.html#menu">Menu</a>
+            <a href="home.html#review">Review</a>
+            <a href="home.html#book">Book</a>
+        </nav>
+    </header>
+
+    <section class="cart-section">
+        <h1 class="heading">Your <span>Cart</span></h1>
+
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will appear here dynamically -->
+        </div>
+
+        <div class="form-actions">
+            <a href="home.html" class="btn back-to-home">Back to Menu</a>
+            <button id="checkout" class="btn" type="button">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="credit">Created By Mr. Web Designer | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Ambil data cart dari server
+        const userId = 1; // Ganti dengan ID pengguna yang sesuai
+        const cartItemsContainer = document.getElementById('cart-items');
+
+        // Menampilkan item-item di cart
+        function displayCartItems() {
+            fetch(`http://localhost:8000/finalcode/api/cart_api.php?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const cart = data.cart_items || [];
+
+                        // Cek jika keranjang kosong
+                        if (cart.length === 0) {
+                            cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                        } else {
+                            cartItemsContainer.innerHTML = cart.map(item => `
+                                <div class="cart-item" data-name="${item.name}">
+                                    <img src="${item.image}" alt="${item.name}" />
+                                    <div class="cart-item-info">
+                                        <h3>${item.name}</h3>
+                                        <p>Price: Rp ${item.price}.000</p>
+                                        <p>Quantity: 
+                                            <button class="quantity-decrease" data-name="${item.name}" data-id="${item.cart_id}">-</button>
+                                            <span class="quantity">${item.quantity}</span>
+                                            <button class="quantity-increase" data-name="${item.name}" data-id="${item.cart_id}">+</button>
+                                        </p>
+                                        <button class="remove-btn" data-id="${item.cart_id}">Remove</button>
+                                    </div>
+                                </div>
+                            `).join('');
+                        }
+                    } else {
+                        alert(data.message || 'Failed to fetch cart data.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error fetching cart data.');
+                });
+        }
+
+        // Fungsi untuk mengupdate quantity produk (Update)
+        function updateQuantity(cartId, delta) {
+            fetch('http://localhost:8000/finalcode/api/cart_api.php', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cart_id: cartId,
+                    quantity: delta
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    displayCartItems(); // Memperbarui tampilan setelah quantity diubah
+                } else {
+                    alert(data.message || 'Failed to update quantity.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error updating quantity.');
+            });
+        }
+
+        // Fungsi untuk menghapus item (Delete)
+        function removeItem(cartId) {
+            fetch('http://localhost:8000/finalcode/api/cart_api.php', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    cart_id: cartId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);
+                    displayCartItems(); // Memperbarui tampilan setelah item dihapus
+                } else {
+                    alert(data.message || 'Failed to delete item.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error deleting item.');
+            });
+        }
+
+        // Menangani perubahan jumlah item
+        cartItemsContainer.addEventListener('click', function (e) {
+            const cartId = e.target.getAttribute('data-id');
+            if (e.target.classList.contains('quantity-decrease')) {
+                updateQuantity(cartId, -1);
+            } else if (e.target.classList.contains('quantity-increase')) {
+                updateQuantity(cartId, 1);
+            } else if (e.target.classList.contains('remove-btn')) {
+                removeItem(cartId);
+            }
+        });
+
+        // Menangani tombol checkout
+        document.getElementById('checkout').addEventListener('click', function () {
+            fetch(`http://localhost:8000/finalcode/api/cart_api.php?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        const cart = data.cart_items || [];
+
+                        if (cart.length === 0) {
+                            alert('Your cart is empty.');
+                            return;
+                        }
+
+                        // Menyiapkan data checkout
+                        const checkoutData = {
+                            product_ids: cart.map(item => item.product_id),
+                            quantities: cart.map(item => item.quantity),
+                            user_id: userId
+                        };
+
+                        // Kirim data checkout ke server
+                        fetch('http://localhost:8000/api/cart_api.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(checkoutData)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                alert(data.message);
+                                displayCartItems(); // Memperbarui tampilan setelah checkout
+                            } else {
+                                alert(data.message || 'Failed to process checkout.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error processing checkout.');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error fetching cart data for checkout.');
+                });
+        });
+
+        // Menampilkan item-item di cart saat halaman dimuat
+        displayCartItems();
+    </script>
+
+</body>
+
+</html>

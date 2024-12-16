@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <!-- Custom JS File Link -->
+    <script src="js/index.js" defer></script>
+
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- Font Awesome CDN Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <a href="home.html" class="logo">coffee <i class="fas fa-mug-hot"></i></a>
+        <nav class="navbar">
+            <a href="home.html">Home</a>
+            <a href="home.html#about">About</a>
+            <a href="home.html#menu">Menu</a>
+            <a href="home.html#review">Review</a>
+            <a href="home.html#book">Book</a>
+        </nav>
+        <div class="cart">
+            <!-- Link ke cart.html, tampilkan jumlah produk di keranjang -->
+            <a href="cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Popular Menu Section -->
+    <section id="menu" class="menu">
+        <h1 class="heading">our menu<span>Popular Menu</span></h1>
+
+        <div class="box-container">
+            <!-- Menu Item 1 -->
+            <div class="box">
+                <img src="image/menu-4.png" alt="The Misch">
+                <div class="content">
+                    <h3>The Misch</h3>
+                    <p>Teh Oolong Klasik Dengan Perpaduan Krim Lemon.</p>
+                    <span>Rp 28.000</span>
+                    <button class="add-to-cart" data-name="The Misch" data-price="28.000" data-image="image/menu-4.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Item 2 -->
+            <div class="box">
+                <img src="image/menu-1.png" alt="Strato Wave">
+                <div class="content">
+                    <h3>Strato Wave</h3>
+                    <p>Shakerato Dengan Sirup Strawberry Lemon Espresso.</p>
+                    <span>Rp 28.000</span>
+                    <button class="add-to-cart" data-name="Strato Wave" data-price="28.000" data-image="image/menu-1.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Item 3 -->
+            <div class="box">
+                <img src="image/menu-2.png" alt="Lahaina">
+                <div class="content">
+                    <h3>Lahaina</h3>
+                    <p>Sirup Mangga Dengan Perpaduan Sirup Curacau Yang Segar.</p>
+                    <span>Rp 23.000</span>
+                    <button class="add-to-cart" data-name="Lahaina" data-price="23.000" data-image="image/menu-2.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Item 4 -->
+            <div class="box">
+                <img src="image/menu-3.png" alt="Major Mayor">
+                <div class="content">
+                    <h3>Major Mayor</h3>
+                    <p>Perpaduan Espresso dan Syrup Rum Dengan Foam Jeruk.</p>
+                    <span>Rp 28.000</span>
+                    <button class="add-to-cart" data-name="Major Mayor" data-price="28.000" data-image="image/menu-3.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snack Menu Section -->
+    <section id="menu" class="menu">
+        <h1 class="heading">our menu<span>SNACK & FOOD</span></h1>
+
+        <div class="box-container">
+            <!-- Menu Item 5 -->
+            <div class="box">
+                <img src="image/menu-5.png" alt="Cwi Mie Spesial">
+                <div class="content">
+                    <h3>Cwi Mie Spesial</h3>
+                    <p>Daging ayam cincang berbumbu, Bakso atau pangsit goreng, Tauge dan daun bawang, Taburan bawang goreng.</p>
+                    <span>Rp 18.000</span>
+                    <button class="add-to-cart" data-name="Cwi Mie Spesial" data-price="18.000" data-image="image/menu-5.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Item 6 -->
+            <div class="box">
+                <img src="image/menu-6.png" alt="Nasi Panggang Sampean">
+                <div class="content">
+                    <h3>Nasi Panggang Sampean</h3>
+                    <p>Nasi + Ayam + Keju Melty + Pilihan Saus.</p>
+                    <span>Rp 30.000</span>
+                    <button class="add-to-cart" data-name="Nasi Panggang Sampean" data-price="30.000" data-image="image/menu-6.png">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p class="credit">Created By Mr. Web Designer | All Rights Reserved</p>
+    </footer>
+
+</body>
+
+</html>

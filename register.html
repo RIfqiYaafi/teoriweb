@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- Font Awesome CDN Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom CSS File Link  -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="home.html" class="logo">coffee <i class="fas fa-mug-hot"></i></a>
+    </header>
+
+    <!-- REGISTER SECTION -->
+    <section class="login">
+        <h1 class="heading">Create <span>Your Account</span></h1>
+
+        <form id="signup-form">
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="Enter your username" required />
+            </div>
+            <div class="input-container">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Enter your email" required />
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your password" required />
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn">Sign Up</button>
+                <p>Already have an account? <a href="login.html" class="link">Login</a></p>
+            </div>
+        </form>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.querySelector('input[name="username"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+
+            if (!username || !email || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const data = {
+                username: username,
+                email: email,
+                password: password
+            };
+
+            fetch('http://localhost:8000/register.php', { 
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok');
+            })
+            .then(data => {
+                console.log(data);
+                if (data.message === 'Data inserted successfully.') {
+                    alert('Registration successful');
+                    window.location.href = 'login.html'; 
+                } else if (data.error) {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

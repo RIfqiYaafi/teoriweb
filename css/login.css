@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root {
+    --main-color: #4CAF50;
+    --border-radius: 95% 4% 97% 5% / 4% 94% 3% 95%;
+    --border-radius-hover: 4% 95% 6% 95% / 95% 4% 92% 5%;
+    --border: .2rem solid var(--main-color);
+    --border-hover: .2rem dashed var(--main-color);
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+body {
+    font-size: 62.5%;
+    background: url('../image/home-bg.jpg') no-repeat center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.header {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.header .logo {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.header .logo i {
+    padding-left: .5rem;
+}
+
+.login {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 3rem 4rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    width: 35rem;
+    text-align: center;
+}
+
+.login .heading {
+    font-size: 5rem;
+    color: transparent;
+    -webkit-text-stroke: .05rem var(--main-color);
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.login .heading span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: var(--main-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container i {
+    position: absolute;
+    left: 1rem;
+    color: var(--main-color);
+    font-size: 2rem;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    font-size: 1.6rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    color: var(--main-color);
+    background: none;
+}
+
+.input-container input:focus {
+    border: var(--border-hover);
+    border-radius: var(--border-radius-hover);
+}
+
+.btn {
+    padding: 1rem 1.5rem;
+    font-size: 1.7rem;
+    background: var(--main-color);
+    color: #fff;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.btn:hover {
+    border: var(--border-hover);
+    border-radius: var(--border-radius-hover);
+    background: #000;
+}
+
+.form-actions {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: var(--main-color);
+}
+
+.form-actions .link {
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.form-actions .link:hover {
+    color: #000;
+}
